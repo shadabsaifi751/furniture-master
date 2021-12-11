@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import Header from "./components/Header";
 import './styles/style.css';
 import './styles/media.css';
@@ -12,11 +12,12 @@ import {
   Route,
 } from "react-router-dom";
 
-
+// export const cartContext = createContext();
 
 const App = () => {
   return(
     <>
+    {/* <cartContext.provider value={'Hello world'}> */}
     <Router>
         <Header/>
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route exact path="/service" component={Service}/>
         </Switch>
     </Router>
+    {/* </cartContext.provider> */}
    
     
     </>
