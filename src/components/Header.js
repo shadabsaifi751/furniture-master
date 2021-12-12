@@ -1,12 +1,16 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import Logo from '../images/logo.png';
 import Popup from '../components/popup';
 import {
     Link,
   } from "react-router-dom";
-  
+
+import { cartContext } from "../App";
 
 const Header = () => {
+    const cartProduct = useContext(cartContext); 
+
+    // const [cartProduct,setCartProduct] = useContext(cartContext);
     // popup start
     const [isOpen ,setIsOpen] = useState(false);
     const togglePopup = () =>{
@@ -57,8 +61,8 @@ const Header = () => {
                     ""
                 }
                 <li><Link to="/service" className="nav-link text-white fs-5 fw-normal">Service</Link></li>
-                <li><Link to="/about" className="nav-link text-white fs-5 fw-normal">What we Do</Link></li>
-                <li><Link to="/" className="nav-link text-white fs-5 fw-normal" onClick={togglePopup} >LogIn / Singup</Link>
+                <li><Link to="/cart" className="nav-link text-white fs-5 fw-normal">Cart {cartProduct.productState}</Link></li>
+                <li><a href="#" className="nav-link text-white fs-5 fw-normal" onClick={togglePopup} >LogIn / Singup</a>
                 { isOpen && < Popup 
 
                         content = { <>

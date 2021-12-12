@@ -83,7 +83,7 @@
   input::-webkit-inner-spin-button {-webkit-appearance: none;}
   input[type=number] {-moz-appearance: textfield;}
   /* #root *{-webkit-transform-style: preserve-3d;} */
-  header *, header{-webkit-transform-style:initial;}
+  /* header *, header{-webkit-transform-style:initial;} */
 
   /* global end */
 
@@ -159,6 +159,9 @@ header a {
 }
 .swiper-container {
   clip-path: polygon(0 0, 100% 0, 100% 98%, 0 90%);
+}
+.right-menu ul li a {
+  cursor: pointer;
 }
 img.banner-bg{width: 100%;}
 .phone-menu{display: none;}

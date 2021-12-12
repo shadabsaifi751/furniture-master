@@ -1,38 +1,45 @@
-import React from "react";
-import Imgcard from "../images/imgslide.jpg"
-import { Col,Row, Container,Card } from 'reactstrap';
+import React,{useState,useContext} from "react";
+// import Imgcard from "../images/imgslide.jpg"
+import { Col,Card } from 'reactstrap';
+import { cartContext } from "../App";
 
 
-var Data = [
-    {name: "saurabh",age: "24", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, repellendus?"},
-    {name: "shadab",age: "19", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, repellendus?"},
-    {name: "sahnoo",age: "21", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, repellendus?"},
-    {name: "rohit",age: "28", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, repellendus?"}
-]
 
-const Loop = () =>{
+const Loop = ({name,age,discription,img}) =>{
+    const cartProduct = useContext(cartContext);
+
+    const [addProdcut, setAddProduct] =useState(false);
+
+    const  HandleAddtoCart= () => {
+        setAddProduct(true);;
+        cartProduct.updateProduct(cartProduct.productState + 1);
+    }
+    const  RemoveHandletoCart= () => {
+        setAddProduct(false);
+        cartProduct.updateProduct(cartProduct.productState - 1);
+    }
+
+
     return(
         <> 
-        <section className="bg-light">
-        <Container fluid="xxl" className="">
-                <Row className="">
-                    <h2 className="text-dark text-center mb-5" style={{}}>Over Products</h2>
-                    {Data.map(eachdata => 
-                    <Col xs={12} lg={3} className="">
+        
+        
+                    {/* <h2 className="text-dark text-center mb-5" style={{}}>Over Products</h2> */}
+                   
+                    <Col xs={6} lg={3} className="">
                         <Card className="">
-                            <img src={Imgcard} className="img-fluid" alt="" />
+                            <img src={img} className="img-fluid" alt="" />
                             <div className="card-body">
-                            <h5 className="card-title fs-4">{eachdata.name}</h5>
-                            <span>Age: {eachdata.age}</span>
-                            <p className="card-text">{eachdata.description}</p>
-                            <a href="#" className="btn btn-warning text-white rounded-pill py-2 fs-6">Go somewhere</a>
+                            <h5 className="card-title fs-4">{name}</h5>
+                            <span className="fw-bold fs-5">${age}</span>
+                            <p className="card-text">{discription}</p>
+                            {!addProdcut ? <button className="btn btn-info text-white fs-6" onClick={HandleAddtoCart}>Add to cart</button>:
+                            <button className="btn btn-info text-white fs-6" onClick={RemoveHandletoCart}>Remove to cart</button>}
                             </div>
                         </Card>    
                     </Col>
-                    )}
-                </Row>
-            </Container>
-        </section>
+               
+  
         </>
     )
 }
